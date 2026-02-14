@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>greeter_component</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RuntimeIdentifier>wasi-wasm</RuntimeIdentifier>
+    <UseAppHost>false</UseAppHost>
+    <PublishTrimmed>true</PublishTrimmed>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <SelfContained>true</SelfContained>
+    <!-- Use local wasi-sdk from WASI_SDK_PATH environment variable -->
+    <WasiSdkRoot>$(WASI_SDK_PATH)</WasiSdkRoot>
+    
+    <!-- Debug settings for WASM debugging -->
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <IlcGenerateStackTraceData>true</IlcGenerateStackTraceData>
+    <IlcFoldIdenticalMethodBodies>false</IlcFoldIdenticalMethodBodies>
+    
+    <!-- Aggressively disable inlining for debugging -->
+    <IlcDisableInlining>true</IlcDisableInlining>
+    <IlcOptimizationPreference>None</IlcOptimizationPreference>
+    <TieredCompilation>false</TieredCompilation>
+    
+    <!-- Emit full source paths in debug info -->
+    <PathMap></PathMap>
+    <DeterministicSourcePaths>false</DeterministicSourcePaths>
+    <EmbedAllSources>true</EmbedAllSources>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BytecodeAlliance.Componentize.DotNet.Wasm.SDK" Version="0.7.0-preview*" />
+    <PackageReference Include="BytecodeAlliance.Componentize.DotNet.WitBindgen" Version="0.7.0-preview*" />
+    <PackageReference Include="runtime.win-x64.microsoft.dotnet.ilcompiler.llvm" Version="10.0.0-alpha.1.25162.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Wit Include="../wit" World="application" />
+  </ItemGroup>
+</Project>

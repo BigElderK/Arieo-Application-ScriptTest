@@ -1,0 +1,6 @@
+package arieo:module;
+
+interface module-manager
+{
+    get-interface: func(interface-id: u64, interface-checksum: u64, instance-name: string) -> u64;
+}

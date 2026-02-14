@@ -1,0 +1,19 @@
+package arieo:application;
+
+interface host 
+{
+    log: func(msg: string);
+}
+
+interface guest 
+{
+    greeting: func() -> string;
+}
+
+world application
+{
+    import host;
+    import arieo:module/module-manager;
+    import arieo:sample/i-sample;
+    export guest;
+}

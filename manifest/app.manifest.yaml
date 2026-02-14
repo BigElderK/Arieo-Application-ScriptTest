@@ -1,0 +1,68 @@
+version: '1'
+app:
+  name: wasmtime_example  
+  # WASM scripts to load
+  script: 
+    linkers:
+      - ${EXE_DIR}/interfaces/arieo_sample_interface_wasmtime_linker.dll
+    startup_script: ${SCRIPT_DIR}/debug/cxx/greeter_component.wasm
+  host_os:
+    windows:
+      environments:
+        ENABLE_VULKAN_VALIDATION_LAYER: "True"
+      modules:
+        - ${EXE_DIR}/modules/arieo_sample_module.dll
+        # Wasmtime scripting module (WARNING: must import before vulkan module which will make JIT entry confilicts)
+        - ${EXE_DIR}/modules/arieo_wasmtime_module.dll
+
+        # Core engine modules
+        - ${EXE_DIR}/modules/arieo_vulkan_module.dll
+        - ${EXE_DIR}/modules/arieo_glfw_win_module.dll
+        - ${EXE_DIR}/modules/arieo_os_filesystem_archive_module.dll
+        - ${EXE_DIR}/modules/arieo_image_loader_module.dll
+        - ${EXE_DIR}/modules/arieo_model_loader_module.dll
+
+    android:
+      modules:
+        # Wasmtime scripting module
+        - $ENV{APP_INTERNAL_DATA_DIR}/engine/modules/libarieo_wasmtime_module.so
+
+        # Core engine modules  
+        - $ENV{APP_INTERNAL_DATA_DIR}/engine/modules/libarieo_vulkan_module.so
+        - $ENV{APP_INTERNAL_DATA_DIR}/engine/modules/libarieo_os_filesystem_archive_module.so
+        - $ENV{APP_INTERNAL_DATA_DIR}/engine/modules/libarieo_image_loader_module.so
+        - $ENV{APP_INTERNAL_DATA_DIR}/engine/modules/libarieo_model_loader_module.so
+        - $ENV{APP_INTERNAL_DATA_DIR}/engine/modules/libarieo_android_win_module.so
+    ubuntu:
+    
+      modules:
+        # Wasmtime scripting module
+        - ${EXE_DIR}/modules/libarieo_wasmtime_module.so
+
+        # Core engine modules
+        - ${EXE_DIR}/modules/libarieo_vulkan_module.so
+        - ${EXE_DIR}/modules/libarieo_x11_window_module.so
+        - ${EXE_DIR}/modules/libarieo_os_filesystem_archive_module.so
+        - ${EXE_DIR}/modules/libarieo_image_loader_module.so
+        - ${EXE_DIR}/modules/libarieo_model_loader_module.so
+    raspberry:
+      modules:
+        # Wasmtime scripting module
+        - ${EXE_DIR}/modules/libarieo_wasmtime_module.so
+
+        # Core engine modules
+        - ${EXE_DIR}/modules/libarieo_vulkan_module.so
+        - ${EXE_DIR}/modules/libarieo_x11_window_module.so
+        - ${EXE_DIR}/modules/libarieo_os_filesystem_archive_module.so
+        - ${EXE_DIR}/modules/libarieo_image_loader_module.so
+        - ${EXE_DIR}/modules/libarieo_model_loader_module.so
+    macos:
+      modules:
+        # Wasmtime scripting module
+        - ${EXE_DIR}/modules/libarieo_wasmtime_module.so
+
+        - ${EXE_DIR}/modules/libarieo_vulkan_module.so
+        - ${EXE_DIR}/modules/libarieo_glfw_win_module.so
+        - ${EXE_DIR}/modules/libarieo_os_filesystem_archive_module.so
+        - ${EXE_DIR}/modules/libarieo_image_loader_module.so
+        - ${EXE_DIR}/modules/libarieo_model_loader_module.so 

@@ -1,0 +1,9 @@
+[target.wasm32-wasip2]
+rustflags = [
+    "-C", "inline-threshold=0",
+    "-C", "no-vectorize-loops",
+    "-C", "debuginfo=2",
+]
+
+[build]
+rustflags = ["-C", "inline-threshold=0"]
