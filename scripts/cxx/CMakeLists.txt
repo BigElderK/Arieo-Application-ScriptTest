@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-include(${CMAKE_CURRENT_LIST_DIR}/../../../cmake/script/wasm_cxx_project.cmake)
+include($ENV{ARIEO_BUILDENV_PACKAGE_INSTALL_FOLDER}/cmake/application/script/wasm_cxx_project.cmake)
 
 # Declare this script project (name, optional alias, sources and wits)
 project(arieo_application_cxx_scripts)
