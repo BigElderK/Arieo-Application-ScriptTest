@@ -1,11 +1,12 @@
 version: '1'
 app:
-  name: wasmtime_example  
+  name: wasmtime_example
   # WASM scripts to load
   script: 
     linkers:
       - $ENV{ENGINE_INSTALL_PATH}/Arieo-Lib-WasmtimeLinker/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/arieo_sample_interface_wasmtime_linker.dll
-    startup_script: ${SCRIPT_DIR}/debug/cxx/greeter_component.wasm
+    script_entry: ${SCRIPT_DIR}/debug/cxx/greeter_component.wasm
+  
   host_os:
     windows:
       environments:
@@ -13,8 +14,12 @@ app:
         ENGINE_PRESET: "windows.x86_64"
         ENGINE_BUILD_TYPE: "RelWithDebInfo"
         ENABLE_VULKAN_VALIDATION_LAYER: "True"
-      main_module: $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Main/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/arieo_main_module.dll
+      context:
+        root: "${ManifestDir}"
+        root: "${ManifestDir}/arieo_render_test_app.obb"
       modules:
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Main/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/arieo_main_module.dll
+
         - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Sample/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/arieo_sample_module.dll
         # Wasmtime scripting module (WARNING: must import before vulkan module which will make JIT entry confilicts)
         - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Wasmtime/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/arieo_wasmtime_module.dll
@@ -45,8 +50,9 @@ app:
         ENGINE_INSTALL_PATH: "${EXE_DIR}/../../../../../../install/02_engine"
         ENGINE_PRESET: "ubuntu.x86_64"
         ENGINE_BUILD_TYPE: "RelWithDebInfo"
-      main_module: $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Main/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_main_module.so
       modules:
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Main/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_main_module.so
+
         # Wasmtime scripting module
         - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Wasmtime/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_wasmtime_module.so
 
@@ -61,8 +67,9 @@ app:
         ENGINE_INSTALL_PATH: "${EXE_DIR}/../../../../../../install/02_engine"
         ENGINE_PRESET: "raspberry.armv8"
         ENGINE_BUILD_TYPE: "RelWithDebInfo"
-      main_module: $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Main/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_main_module.so
       modules:
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Main/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_main_module.so
+
         # Wasmtime scripting module
         - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Wasmtime/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_wasmtime_module.so
 
@@ -77,8 +84,8 @@ app:
         ENGINE_INSTALL_PATH: "${EXE_DIR}/../../../../../../install/02_engine"
         ENGINE_PRESET: "macos.arm64"
         ENGINE_BUILD_TYPE: "RelWithDebInfo"
-      main_module: $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Main/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_main_module.so
       modules:
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Main/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_main_module.so      
         # Wasmtime scripting module
         - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Wasmtime/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_wasmtime_module.so
 
