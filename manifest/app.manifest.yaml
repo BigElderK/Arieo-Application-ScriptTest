@@ -4,7 +4,7 @@ app:
   # WASM scripts to load
   script: 
     linkers:
-      - $ENV{ENGINE_INSTALL_PATH}/Arieo-Lib-WasmtimeLinker/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/arieo_sample_interface_wasmtime_linker.dll
+      - $ENV{ENGINE_INSTALL_PATH}/Arieo-Lib-WasmtimeLinker/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/arieo_sample_interface_wasmtime_linker.dll
     script_entry: ${SCRIPT_DIR}/debug/cxx/greeter_component.wasm
   
   host_os:
@@ -18,18 +18,18 @@ app:
         root: "${ManifestDir}"
         root: "${ManifestDir}/arieo_render_test_app.obb"
       modules:
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Main/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/arieo_main_module.dll
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Main/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/arieo_main_module.dll
 
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Sample/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/arieo_sample_module.dll
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Sample/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/arieo_sample_module.dll
         # Wasmtime scripting module (WARNING: must import before vulkan module which will make JIT entry confilicts)
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Wasmtime/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/arieo_wasmtime_module.dll
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Wasmtime/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/arieo_wasmtime_module.dll
 
         # Core engine modules
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Vulkan/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/arieo_vulkan_module.dll
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-GlfwWindow/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/arieo_glfw_win_module.dll
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-OSFileSystemArchive/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/arieo_os_filesystem_archive_module.dll
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-ImageLoader/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/arieo_image_loader_module.dll
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-ModelLoader/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/arieo_model_loader_module.dll
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Vulkan/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/arieo_vulkan_module.dll
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-GlfwWindow/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/arieo_glfw_win_module.dll
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-OSFileSystemArchive/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/arieo_os_filesystem_archive_module.dll
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-ImageLoader/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/arieo_image_loader_module.dll
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-ModelLoader/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/arieo_model_loader_module.dll
 
     android:
       environments:
@@ -37,60 +37,60 @@ app:
         ENGINE_BUILD_TYPE: "RelWithDebInfo"
       modules:
         # Wasmtime scripting module
-        - $ENV{APP_INTERNAL_DATA_DIR}/engine/Arieo-Module-Wasmtime/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_wasmtime_module.so
+        - $ENV{APP_INTERNAL_DATA_DIR}/engine/Arieo-Module-Wasmtime/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/libarieo_wasmtime_module.so
 
         # Core engine modules  
-        - $ENV{APP_INTERNAL_DATA_DIR}/engine/Arieo-Module-Vulkan/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_vulkan_module.so
-        - $ENV{APP_INTERNAL_DATA_DIR}/engine/Arieo-Module-OSFileSystemArchive/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_os_filesystem_archive_module.so
-        - $ENV{APP_INTERNAL_DATA_DIR}/engine/Arieo-Module-ImageLoader/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_image_loader_module.so
-        - $ENV{APP_INTERNAL_DATA_DIR}/engine/Arieo-Module-ModelLoader/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_model_loader_module.so
-        - $ENV{APP_INTERNAL_DATA_DIR}/engine/Arieo-Module-AndroidWindow/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_android_win_module.so
+        - $ENV{APP_INTERNAL_DATA_DIR}/engine/Arieo-Module-Vulkan/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/libarieo_vulkan_module.so
+        - $ENV{APP_INTERNAL_DATA_DIR}/engine/Arieo-Module-OSFileSystemArchive/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/libarieo_os_filesystem_archive_module.so
+        - $ENV{APP_INTERNAL_DATA_DIR}/engine/Arieo-Module-ImageLoader/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/libarieo_image_loader_module.so
+        - $ENV{APP_INTERNAL_DATA_DIR}/engine/Arieo-Module-ModelLoader/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/libarieo_model_loader_module.so
+        - $ENV{APP_INTERNAL_DATA_DIR}/engine/Arieo-Module-AndroidWindow/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/libarieo_android_win_module.so
     ubuntu:
       environments:
         ENGINE_INSTALL_PATH: "${EXE_DIR}/../../../../../../install/02_engine"
         ENGINE_PRESET: "ubuntu.x86_64"
         ENGINE_BUILD_TYPE: "RelWithDebInfo"
       modules:
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Main/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_main_module.so
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Main/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/libarieo_main_module.so
 
         # Wasmtime scripting module
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Wasmtime/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_wasmtime_module.so
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Wasmtime/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/libarieo_wasmtime_module.so
 
         # Core engine modules
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Vulkan/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_vulkan_module.so
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-X11Window/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_x11_window_module.so
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-OSFileSystemArchive/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_os_filesystem_archive_module.so
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-ImageLoader/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_image_loader_module.so
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-ModelLoader/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_model_loader_module.so
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Vulkan/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/libarieo_vulkan_module.so
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-X11Window/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/libarieo_x11_window_module.so
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-OSFileSystemArchive/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/libarieo_os_filesystem_archive_module.so
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-ImageLoader/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/libarieo_image_loader_module.so
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-ModelLoader/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/libarieo_model_loader_module.so
     raspberry:
       environments:
         ENGINE_INSTALL_PATH: "${EXE_DIR}/../../../../../../install/02_engine"
         ENGINE_PRESET: "raspberry.armv8"
         ENGINE_BUILD_TYPE: "RelWithDebInfo"
       modules:
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Main/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_main_module.so
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Main/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/libarieo_main_module.so
 
         # Wasmtime scripting module
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Wasmtime/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_wasmtime_module.so
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Wasmtime/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/libarieo_wasmtime_module.so
 
         # Core engine modules
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Vulkan/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_vulkan_module.so
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-X11Window/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_x11_window_module.so
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-OSFileSystemArchive/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_os_filesystem_archive_module.so
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-ImageLoader/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_image_loader_module.so
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-ModelLoader/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_model_loader_module.so
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Vulkan/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/libarieo_vulkan_module.so
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-X11Window/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/libarieo_x11_window_module.so
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-OSFileSystemArchive/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/libarieo_os_filesystem_archive_module.so
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-ImageLoader/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/libarieo_image_loader_module.so
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-ModelLoader/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/libarieo_model_loader_module.so
     macos:
       environments:
         ENGINE_INSTALL_PATH: "${EXE_DIR}/../../../../../../install/02_engine"
         ENGINE_PRESET: "macos.arm64"
         ENGINE_BUILD_TYPE: "RelWithDebInfo"
       modules:
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Main/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_main_module.so      
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Main/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/libarieo_main_module.so      
         # Wasmtime scripting module
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Wasmtime/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_wasmtime_module.so
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Wasmtime/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/libarieo_wasmtime_module.so
 
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Vulkan/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_vulkan_module.so
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-GlfwWindow/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_glfw_win_module.so
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-OSFileSystemArchive/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_os_filesystem_archive_module.so
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-ImageLoader/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_image_loader_module.so
-        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-ModelLoader/$ENV{ENGINE_PRESET}/lib/$ENV{ENGINE_BUILD_TYPE}/libarieo_model_loader_module.so 
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-Vulkan/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/libarieo_vulkan_module.so
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-GlfwWindow/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/libarieo_glfw_win_module.so
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-OSFileSystemArchive/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/libarieo_os_filesystem_archive_module.so
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-ImageLoader/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/libarieo_image_loader_module.so
+        - $ENV{ENGINE_INSTALL_PATH}/Arieo-Module-ModelLoader/$ENV{ENGINE_PRESET}/bin/$ENV{ENGINE_BUILD_TYPE}/libarieo_model_loader_module.so 
