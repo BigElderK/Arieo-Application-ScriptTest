@@ -8,9 +8,9 @@ add_custom_target(ArieoApplications ALL)
 arieo_application_project(
     arieo_script_test_app
     CONTENT_FOLDER
-        ${CMAKE_CURRENT_SOURCE_DIR}/content
+        ${CMAKE_CURRENT_LIST_DIR}/content
     SCRIPT_FOLDER
-        ${CMAKE_CURRENT_SOURCE_DIR}/scripts
+        ${CMAKE_CURRENT_LIST_DIR}/scripts
     MANIFEST_FILE
-        ${CMAKE_CURRENT_SOURCE_DIR}/manifest/app.manifest.yaml
+        ${CMAKE_CURRENT_LIST_DIR}/manifest/app.manifest.yaml
 )

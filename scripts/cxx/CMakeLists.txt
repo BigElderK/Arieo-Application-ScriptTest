@@ -9,18 +9,18 @@ arieo_script_project(
     greeter_component
     ALIAS arieo::tests::script::greeter_component
     BUILD_DIR
-        ${CMAKE_CURRENT_SOURCE_DIR}/build
+        ${CMAKE_CURRENT_LIST_DIR}/build
     WIT
-        ${CMAKE_CURRENT_SOURCE_DIR}/../wit/arieo_application.wit
+        ${CMAKE_CURRENT_LIST_DIR}/../wit/arieo_application.wit
     WIT_WORLD
         arieo:application/application
     WIT_DEPENDENCIES
-        ${CMAKE_CURRENT_SOURCE_DIR}/../wit/deps/arieo-module/module.wit
-        ${CMAKE_CURRENT_SOURCE_DIR}/../wit/deps/arieo-sample/sample.wit
+        ${CMAKE_CURRENT_LIST_DIR}/../wit/deps/arieo-module/module.wit
+        ${CMAKE_CURRENT_LIST_DIR}/../wit/deps/arieo-sample/sample.wit
     WIT_GEN_DIR
-        ${CMAKE_CURRENT_SOURCE_DIR}/_generated
+        ${CMAKE_CURRENT_LIST_DIR}/_generated
     INCLUDE_FOLDERS
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
+        ${CMAKE_CURRENT_LIST_DIR}/include
     SOURCES
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/*.cpp
 )
