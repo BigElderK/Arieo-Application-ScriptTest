@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.31)
 project(arieo_script_test_app LANGUAGES NONE)
 
-include($env{ARIEO_BUILD_ENV_PACKAGES_OUTPUT_DIR}/cmake/build_environment.cmake)
+include($ENV{ARIEO_BUILD_ENV_PACKAGES_OUTPUT_DIR}/cmake/build_environment.cmake)
 
 add_custom_target(ArieoApplications ALL)
 

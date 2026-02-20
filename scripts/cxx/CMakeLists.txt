@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-include($env{ARIEO_BUILD_ENV_PACKAGES_OUTPUT_DIR}/cmake/build_environment.cmake)
+include($ENV{ARIEO_BUILD_ENV_PACKAGES_OUTPUT_DIR}/cmake/build_environment.cmake)
 
 # Declare this script project (name, optional alias, sources and wits)
 project(arieo_application_cxx_scripts)
